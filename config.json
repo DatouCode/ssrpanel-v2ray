@@ -14,7 +14,7 @@
   "stats": {},
   "inbounds": [
     {
-      "listen": "127.0.0.1",
+      "listen": "0.0.0.0",
       "port": 10086,
       "protocol": "dokodemo-door",
       "settings": {
@@ -24,12 +24,12 @@
     },
     {
       "tag": "proxy",
-      "listen": "127.0.0.1",
+      "listen": "0.0.0.0",
       "port": 9999,
       "protocol": "vmess",
       "settings": {
         "clients": [],
-        "disableInsecureEncryption": true,
+        "disableInsecureEncryption": false,
         "default": {
           "level": 0,
           "alterId": 16
@@ -37,8 +37,14 @@
       },
       "streamSettings": {
         "network": "ws",
-        "wsSettings": {
-          "path": "/ws"
+        "security":"tls",
+        "tlsSettings": {
+          "certificates":[
+            {
+              "certificateFile":"/root/ssrpanel-v2ray/v2ray.crt",
+              "keyFile":"/root/ssrpanel-v2ray/v2ray.key"
+            }
+          ]
         }
       }
     }
